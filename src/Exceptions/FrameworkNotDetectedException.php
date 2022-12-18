@@ -6,10 +6,10 @@ use Exception;
 
 class FrameworkNotDetectedException extends Exception
 {
-    protected $frameworkName = 'PHP';
-    protected $driverClass = '';
+    protected string $frameworkName = 'PHP';
+    protected string $driverClass = '';
 
-    public static function inDriver($driver)
+    public static function inDriver($driver): static
     {
         $exception = new static;
         $exception->driverClass = get_class($driver);

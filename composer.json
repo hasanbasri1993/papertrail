@@ -1,5 +1,5 @@
 {
-    "name": "stephanecoinon/papertrail",
+    "name": "hasanbasri1993/papertrail",
     "description": "Integrate Papertrail log monitor in your PHP applications",
     "homepage": "https://github.com/stephanecoinon/papertrail",
     "license": "MIT",
@@ -25,13 +25,13 @@
         ]
     },
     "require": {
-        "php": ">=5.4"
+        "php": "~8.1"
     },
     "require-dev": {
         "monolog/monolog": "~1.11",
         "guzzlehttp/guzzle": "^6.1",
         "vlucas/phpdotenv": "^2.4",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^8.5"
     },
     "suggest": {
         "monolog/monolog": "Allows more advanced logging of the application flow"
