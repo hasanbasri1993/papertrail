@@ -11,15 +11,14 @@ use Psr\Log\LoggerInterface;
 class Php
 {
     public static string $defaultLoggerName = 'PHP';
-    public static mixed $formatLogger = '';
+    public static $formatLogger = '';
     public static array $papertrailProcessor = [];
 
     /**
      * Papertrail log handler.
      *
-     * @var HandlerInterface|SyslogUdpHandler
      */
-    protected SyslogUdpHandler|HandlerInterface $handler;
+    protected $handler;
 
     /**
      * Make a new PHP driver to send logs to Papertrail.
@@ -74,7 +73,7 @@ class Php
      * @param string $prefix
      * @return HandlerInterface|SyslogUdpHandler
      */
-    public function getHandler(string $host, int $port, string $prefix): HandlerInterface|SyslogUdpHandler
+    public function getHandler(string $host, int $port, string $prefix)
     {
         $syslog = new SyslogUdpHandler($host, $port);
         $formatter = new LineFormatter("$prefix%channel%.%level_name%: %message% %extra%");
@@ -87,7 +86,7 @@ class Php
      *
      * @return Logger|LoggerInterface
      */
-    public function getLogger(): Logger|LoggerInterface
+    public function getLogger()
     {
         return new Logger(static::$defaultLoggerName);
     }
@@ -97,7 +96,7 @@ class Php
      *
      * @return $this
      */
-    protected function detectFrameworkOrFail(): static
+    protected function detectFrameworkOrFail(): Php
     {
         // no framework to detect in a plain PHP context
         return $this;

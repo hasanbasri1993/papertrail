@@ -2,26 +2,28 @@
 
 namespace StephaneCoinon\Papertrail;
 
+use Psr\Log\LoggerInterface;
 use StephaneCoinon\Papertrail\Exceptions\LaravelNotDetectedException;
 
 class Laravel extends Php
 {
-    public static $defaultLoggerName = 'Laravel';
+    public static string $defaultLoggerName = 'Laravel';
 
     /**
      * Is Laravel installed?
      *
      * @return boolean
      */
-    public function isLaravelInstalled()
+    public function isLaravelInstalled(): bool
     {
         return class_exists('Illuminate\Foundation\Application');
     }
 
     /**
      * {@inheritDoc}
+     * @throws LaravelNotDetectedException
      */
-    protected function detectFrameworkOrFail()
+    protected function detectFrameworkOrFail(): Laravel
     {
         if (! $this->isLaravelInstalled()) {
             throw LaravelNotDetectedException::inDriver($this);
@@ -33,9 +35,9 @@ class Laravel extends Php
     /**
      * Get the logger instance.
      *
-     * @return \Psr\Log\LoggerInterface
+     * @return LoggerInterface
      */
-    public function getLogger()
+    public function getLogger(): LoggerInterface
     {
         $logger = app('log');
 

@@ -9,7 +9,7 @@ class FrameworkNotDetectedException extends Exception
     protected string $frameworkName = 'PHP';
     protected string $driverClass = '';
 
-    public static function inDriver($driver): static
+    public static function inDriver($driver): FrameworkNotDetectedException
     {
         $exception = new static;
         $exception->driverClass = get_class($driver);
